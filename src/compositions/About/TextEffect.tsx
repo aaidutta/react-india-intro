@@ -1,5 +1,5 @@
 import React from 'react';
-import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {FONT_FAMILY} from '../../constants';
 
 const title: React.CSSProperties = {
@@ -7,8 +7,6 @@ const title: React.CSSProperties = {
 	fontWeight: 'bold',
 	fontSize: 100,
 	textAlign: 'center',
-	position: 'absolute',
-	bottom: 160,
 	width: '100%',
 };
 
@@ -18,7 +16,7 @@ const word: React.CSSProperties = {
 	display: 'inline-block',
 };
 
-export const Title: React.FC<{
+export const TextEffect: React.FC<{
 	titleText: string;
 	titleColor: string;
 }> = ({titleText, titleColor}) => {
@@ -28,7 +26,11 @@ export const Title: React.FC<{
 	const words = titleText.split(' ');
 
 	return (
-		<h1 style={title}>
+    <AbsoluteFill style={{
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
+      <h1 style={title}>
 			{words.map((t, i) => {
 				const delay = i * 5;
 
@@ -54,5 +56,7 @@ export const Title: React.FC<{
 				);
 			})}
 		</h1>
+    </AbsoluteFill>
+		
 	);
 };

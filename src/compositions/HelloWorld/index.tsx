@@ -54,7 +54,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 
 	return (
 		<AbsoluteFill style={{
-			background: 'linear-gradient(to bottom, #000021, #010024)',
+			background: '#0b1337',
 		}}>
 			<AbsoluteFill style={{opacity}}>
 			<Background speed={0.01} maxOffset={50} circleRadius={5} />

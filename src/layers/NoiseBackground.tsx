@@ -6,7 +6,7 @@ const OVERSCAN_MARGIN = 100;
 const ROWS = 10;
 const COLS = 15;
 
-const Background: React.FC<{
+const NoiseBackground: React.FC<{
   speed: number;
   circleRadius: number;
   maxOffset: number;
@@ -36,7 +36,7 @@ const Background: React.FC<{
               cx={x + dx}
               cy={y + dy}
               r={circleRadius}
-              fill="red"
+              fill="#ed5d26"
               opacity={opacity}
             />
           );
@@ -47,4 +47,4 @@ const Background: React.FC<{
   );
 };
 
-export default Background
+export default NoiseBackground

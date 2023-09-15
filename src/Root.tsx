@@ -3,7 +3,7 @@ import Intro from './Intro'
 
 export const RemotionRoot: React.FC = () => {
 	return (
-		<Composition id='Intro' durationInFrames={180} fps={30} width={1920}
+		<Composition id='Intro' durationInFrames={600} fps={30} width={1920}
 		height={1080} component={Intro}  />
 	);
 };
