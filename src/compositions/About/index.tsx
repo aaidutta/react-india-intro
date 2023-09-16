@@ -1,33 +1,27 @@
 import {AbsoluteFill, Sequence} from 'remotion';
-import IconNoise from '../../layers/IconNoise';
-import {PopText} from './PopText';
+import {NoisePunch} from './NoisePunch';
+import {RippleTransition} from '../../layers/RippleTransition';
+import {
+	REACT_INDIA_BLUE,
+	REACT_INDIA_GREEN,
+	REACT_INDIA_ORANGE,
+} from '../../constants';
+import {TextTrail} from './TextTrail';
 
 export const About = () => {
-	const icons = [
-		'ball.png',
-		'beach.png',
-		'coconut.png',
-		'flip-flop.png',
-		'float.png',
-		'umbrella.png',
-	];
 	return (
-		<AbsoluteFill style={{background: '#ed5d26'}}>
-			<AbsoluteFill>
-				<IconNoise icons={icons} speed={0.005} />
-				<Sequence durationInFrames={20}>
-					<PopText text="The" />
-				</Sequence>
-				<Sequence from={20} durationInFrames={20}>
-					<PopText text="Biggest" />
-				</Sequence>
-				<Sequence from={40} durationInFrames={20}>
-					<PopText text="React" />
-				</Sequence>
-				<Sequence from={60} durationInFrames={20}>
-					<PopText text="Conference" />
-				</Sequence>
-			</AbsoluteFill>
+		<AbsoluteFill>
+			<Sequence durationInFrames={100}>
+				<NoisePunch />
+			</Sequence>
+			<Sequence from={85} durationInFrames={40}>
+				<RippleTransition color={REACT_INDIA_BLUE} />
+				<RippleTransition color={REACT_INDIA_ORANGE} delay={5} />
+				<RippleTransition color={REACT_INDIA_GREEN} delay={10} />
+			</Sequence>
+			<Sequence from={110}>
+				<TextTrail />
+			</Sequence>
 		</AbsoluteFill>
 	);
 };

@@ -1,6 +1,7 @@
 import {noise3D} from '@remotion/noise';
 import React from 'react';
 import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
+import {REACT_INDIA_ORANGE} from '../constants';
 
 const OVERSCAN_MARGIN = 100;
 const ROWS = 10;
@@ -36,7 +37,7 @@ const NoiseBackground: React.FC<{
 							cx={x + dx}
 							cy={y + dy}
 							r={circleRadius}
-							fill="#ed5d26"
+							fill={REACT_INDIA_ORANGE}
 							opacity={opacity}
 						/>
 					);

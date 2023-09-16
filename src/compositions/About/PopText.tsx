@@ -1,9 +1,11 @@
 import {FC} from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
-import {REACT_INDIA_BLUE} from '../../constants';
 import {loadFont} from '@remotion/google-fonts/Syne';
 
-export const PopText: FC<{text: string}> = ({text}) => {
+export const PopText: FC<{text: string; textColor: string}> = ({
+	text,
+	textColor,
+}) => {
 	const frame = useCurrentFrame();
 	const scaleValue = interpolate(frame, [0, 2], [0, 1], {
 		extrapolateRight: 'clamp',
@@ -23,7 +25,7 @@ export const PopText: FC<{text: string}> = ({text}) => {
 					textTransform: 'uppercase',
 					fontSize: '150px',
 					fontWeight: '900',
-					color: `${REACT_INDIA_BLUE}`,
+					color: textColor,
 					transform: `scale(${scaleValue})`,
 				}}
 			>

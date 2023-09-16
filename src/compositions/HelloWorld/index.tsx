@@ -12,6 +12,7 @@ import {z} from 'zod';
 import {zColor} from '@remotion/zod-types';
 import {Logo} from './Logo';
 import Background from '../../layers/NoiseBackground';
+import {REACT_INDIA_BLUE} from '../../constants';
 
 export const myCompSchema = z.object({
 	titleText: z.string(),
@@ -53,7 +54,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	// Fade out the animation at the end
 	const opacity = interpolate(
 		frame,
-		[durationInFrames - 30, durationInFrames - 20],
+		[durationInFrames - 25, durationInFrames - 20],
 		[1, 0],
 		{
 			extrapolateLeft: 'clamp',
@@ -64,7 +65,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	return (
 		<AbsoluteFill
 			style={{
-				background: '#0b1337',
+				background: REACT_INDIA_BLUE,
 			}}
 		>
 			<AbsoluteFill style={{opacity}}>
