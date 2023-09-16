@@ -1,10 +1,15 @@
 import {AbsoluteFill} from 'remotion';
+import {useAppearWithScaleAndBounce} from '../../hooks/useAppearWithScaleAndBounce';
 export const Logo = () => {
+	const {scaleValue} = useAppearWithScaleAndBounce(20);
 	return (
-		<AbsoluteFill style={{
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
+		<AbsoluteFill
+			style={{
+				justifyContent: 'center',
+				alignItems: 'center',
+				transform: `scale(${scaleValue})`,
+			}}
+		>
 			<svg
 				width="500"
 				height="500"

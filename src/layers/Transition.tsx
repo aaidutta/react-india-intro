@@ -8,31 +8,26 @@ import {
 } from 'remotion';
 
 export const Transition: React.FC<{
-	type: 'in' | 'out';
 	children: React.ReactNode;
-}> = ({type, children}) => {
+}> = ({children}) => {
 	const frame = useCurrentFrame();
 	const videoConfig = useVideoConfig();
 
-	const firstFrame = videoConfig.durationInFrames - 9;
 	const progress = spring({
 		config: {
 			damping: 80,
 		},
 		fps: videoConfig.fps,
-		frame: type === 'in' ? frame : Math.max(0, frame - firstFrame),
+		frame,
+		durationInFrames: 20,
 	});
 
-	const percent = interpolate(
-		progress,
-		[0, 1],
-		type === 'in' ? [100, 0] : [0, 100]
-	);
+	const percent = interpolate(progress, [0, 1], [100, 0]);
 
 	return (
 		<AbsoluteFill
 			style={{
-				transform: `translateX(${type === 'in' ? percent : 0 - percent}%)`,
+				transform: `translateX(${percent}%)`,
 			}}
 		>
 			{children}

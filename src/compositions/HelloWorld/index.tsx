@@ -10,7 +10,7 @@ import {
 import {Title} from './Title';
 import {z} from 'zod';
 import {zColor} from '@remotion/zod-types';
-import { Logo } from './Logo';
+import {Logo} from './Logo';
 import Background from '../../layers/NoiseBackground';
 
 export const myCompSchema = z.object({
@@ -18,6 +18,14 @@ export const myCompSchema = z.object({
 	titleColor: zColor(),
 });
 
+/**
+ * Sequence(120 frames):
+ * 1) Random noise background - Frame 0
+ * 2) Logo pops - Frame 30 - 50
+ * 3) Logo moves to top - Frame 50 - 70
+ * 4) Text Starts Appearing Frame 70 onwards
+ * 5) Fade from Frame 90 - 100
+ */
 export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	titleText: propOne,
 	titleColor: propTwo,
@@ -25,13 +33,14 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	const frame = useCurrentFrame();
 	const {durationInFrames, fps} = useVideoConfig();
 
-	// Animate from 0 to 1 after 25 frames
+	// Animate from 0 to 1 after 50 frames in 20 frames
 	const logoTranslationProgress = spring({
-		frame: frame - 35,
+		frame: frame - 50,
 		fps,
 		config: {
 			damping: 100,
 		},
+		durationInFrames: 20,
 	});
 
 	// Move the logo up by 150 pixels once the transition starts
@@ -44,7 +53,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	// Fade out the animation at the end
 	const opacity = interpolate(
 		frame,
-		[durationInFrames - 25, durationInFrames - 15],
+		[durationInFrames - 30, durationInFrames - 20],
 		[1, 0],
 		{
 			extrapolateLeft: 'clamp',
@@ -53,13 +62,19 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	);
 
 	return (
-		<AbsoluteFill style={{
-			background: '#0b1337',
-		}}>
+		<AbsoluteFill
+			style={{
+				background: '#0b1337',
+			}}
+		>
 			<AbsoluteFill style={{opacity}}>
-			<Background speed={0.01} maxOffset={50} circleRadius={5} />
-				<Sequence from={35}>
-				<AbsoluteFill style={{transform: `translateY(${logoTranslation}px)`}}><Logo /></AbsoluteFill>
+				<Background speed={0.01} maxOffset={50} circleRadius={5} />
+				<Sequence from={30}>
+					<AbsoluteFill style={{transform: `translateY(${logoTranslation}px)`}}>
+						<Logo />
+					</AbsoluteFill>
+				</Sequence>
+				<Sequence from={70}>
 					<Title titleText={propOne} titleColor={propTwo} />
 				</Sequence>
 			</AbsoluteFill>

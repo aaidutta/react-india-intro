@@ -1,7 +1,6 @@
-import {Sequence} from 'remotion'
-import {AbsoluteFill} from 'remotion';
+import {AbsoluteFill, Sequence} from 'remotion';
 import IconNoise from '../../layers/IconNoise';
-import { TextEffect } from './TextEffect';
+import {PopText} from './PopText';
 
 export const About = () => {
 	const icons = [
@@ -15,19 +14,19 @@ export const About = () => {
 	return (
 		<AbsoluteFill style={{background: '#ed5d26'}}>
 			<AbsoluteFill>
-				<IconNoise icons={icons} speed={0.01} />
-        <Sequence from={40} durationInFrames={60}>
-        <TextEffect titleColor="#fbfadf" titleText="The Biggest" />
-        </Sequence>
-        <Sequence from={130} durationInFrames={60}>
-        <TextEffect titleColor="#fbfadf" titleText="React Conference" />
-        </Sequence>
-        <Sequence from={220} durationInFrames={60} >
-        <TextEffect titleColor="#fbfadf" titleText="in India" />
-        </Sequence>
-        <Sequence from={310} durationInFrames={60} >
-        <TextEffect titleColor="#fbfadf" titleText="is BACK!!" />
-        </Sequence>
+				<IconNoise icons={icons} speed={0.005} />
+				<Sequence durationInFrames={20}>
+					<PopText text="The" />
+				</Sequence>
+				<Sequence from={20} durationInFrames={20}>
+					<PopText text="Biggest" />
+				</Sequence>
+				<Sequence from={40} durationInFrames={20}>
+					<PopText text="React" />
+				</Sequence>
+				<Sequence from={60} durationInFrames={20}>
+					<PopText text="Conference" />
+				</Sequence>
 			</AbsoluteFill>
 		</AbsoluteFill>
 	);

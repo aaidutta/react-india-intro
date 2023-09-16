@@ -1,9 +1,11 @@
 import React from 'react';
 import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {FONT_FAMILY} from '../../constants';
+import {loadFont} from '@remotion/google-fonts/Syne';
+
+const {fontFamily} = loadFont();
 
 const title: React.CSSProperties = {
-	fontFamily: FONT_FAMILY,
+	fontFamily,
 	fontWeight: 'bold',
 	fontSize: 100,
 	textAlign: 'center',
