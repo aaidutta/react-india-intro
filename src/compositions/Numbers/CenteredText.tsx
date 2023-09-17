@@ -1,6 +1,5 @@
 import {FC} from 'react';
 import {AbsoluteFill} from 'remotion';
-import {REACT_INDIA_GREEN, REACT_INDIA_YELLOW} from '../../constants';
 import {loadFont} from '@remotion/google-fonts/Montserrat';
 import {useAppearWithScaleAndBounce} from '../../hooks/useAppearWithScaleAndBounce';
 
