@@ -1,6 +1,7 @@
 import {AbsoluteFill, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 
 import {loadFont, fontFamily} from '@remotion/google-fonts/Kanit';
+import {useFadeOut} from '../hooks/useFadeOut';
 
 loadFont('italic', {
 	weights: ['900'],
@@ -10,11 +11,14 @@ export const TextBackground: React.FC<{
 	text: string;
 }> = ({text}) => {
 	const {fps, height} = useVideoConfig();
-	const frame = useCurrentFrame() % 50;
+	const frame = useCurrentFrame();
+	const modFrame = frame % 50;
+
+	const {opacity} = useFadeOut(20, 5);
 
 	const push1 = spring({
 		fps,
-		frame,
+		frame: modFrame,
 		config: {
 			damping: 200,
 		},
@@ -23,7 +27,7 @@ export const TextBackground: React.FC<{
 
 	const push2 = spring({
 		fps,
-		frame,
+		frame: modFrame,
 		config: {
 			damping: 200,
 		},
@@ -33,7 +37,7 @@ export const TextBackground: React.FC<{
 	const panelHeight = height / 3;
 
 	return (
-		<AbsoluteFill>
+		<AbsoluteFill style={{opacity}}>
 			{new Array(5).fill(true).map((_, i) => {
 				return (
 					<AbsoluteFill

@@ -13,6 +13,7 @@ import {zColor} from '@remotion/zod-types';
 import {Logo} from './Logo';
 import Background from '../../layers/NoiseBackground';
 import {REACT_INDIA_BLUE} from '../../constants';
+import {useFadeOut} from '../../hooks/useFadeOut';
 
 export const myCompSchema = z.object({
 	titleText: z.string(),
@@ -32,7 +33,8 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	titleColor: propTwo,
 }) => {
 	const frame = useCurrentFrame();
-	const {durationInFrames, fps} = useVideoConfig();
+	const {fps} = useVideoConfig();
+	const {opacity} = useFadeOut(25, 20);
 
 	// Animate from 0 to 1 after 50 frames in 20 frames
 	const logoTranslationProgress = spring({
@@ -49,17 +51,6 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 		logoTranslationProgress,
 		[0, 1],
 		[0, -150]
-	);
-
-	// Fade out the animation at the end
-	const opacity = interpolate(
-		frame,
-		[durationInFrames - 25, durationInFrames - 20],
-		[1, 0],
-		{
-			extrapolateLeft: 'clamp',
-			extrapolateRight: 'clamp',
-		}
 	);
 
 	return (

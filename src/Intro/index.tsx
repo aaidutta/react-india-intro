@@ -14,7 +14,7 @@ const Intro = () => {
 				/>
 			</Sequence>
 			{/* Slide in Transition from frame 110 */}
-			<Sequence from={100} durationInFrames={250}>
+			<Sequence from={100} durationInFrames={335}>
 				<Transition>
 					<About />
 				</Transition>

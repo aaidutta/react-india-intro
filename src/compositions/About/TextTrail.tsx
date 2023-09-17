@@ -3,7 +3,6 @@ import {REACT_INDIA_GREEN, REACT_INDIA_YELLOW} from '../../constants';
 import {Trail} from '@remotion/motion-blur';
 import {PopText} from './PopText';
 import {TextBackground} from '../../layers/TextBackground';
-import {Poster} from './Poster';
 
 export const TextTrail = () => {
 	return (
@@ -17,11 +16,8 @@ export const TextTrail = () => {
 					<PopText textColor={REACT_INDIA_YELLOW} text="In" />
 				</Sequence>
 			</Trail>
-			<Sequence from={30} durationInFrames={50}>
+			<Sequence from={30} durationInFrames={100}>
 				<TextBackground text="INDIA" />
-			</Sequence>
-			<Sequence from={55} durationInFrames={25}>
-				<Poster />
 			</Sequence>
 		</AbsoluteFill>
 	);

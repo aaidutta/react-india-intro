@@ -7,6 +7,7 @@ import {
 	REACT_INDIA_ORANGE,
 } from '../../constants';
 import {TextTrail} from './TextTrail';
+import TickerTape from './TickerTape';
 
 export const About = () => {
 	return (
@@ -19,8 +20,11 @@ export const About = () => {
 				<RippleTransition color={REACT_INDIA_ORANGE} delay={5} />
 				<RippleTransition color={REACT_INDIA_GREEN} delay={10} />
 			</Sequence>
-			<Sequence from={110}>
+			<Sequence from={110} durationInFrames={130}>
 				<TextTrail />
+			</Sequence>
+			<Sequence from={240} durationInFrames={100}>
+				<TickerTape />
 			</Sequence>
 		</AbsoluteFill>
 	);
