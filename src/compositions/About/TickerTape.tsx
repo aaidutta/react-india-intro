@@ -7,14 +7,14 @@ import {loadFont} from '@remotion/google-fonts/Syne';
 import {useFadeOut} from '../../hooks/useFadeOut';
 
 const layers = [
-	{direction: 'left', speed: 100, color: REACT_INDIA_YELLOW, text: 'IS BACK'},
+	{direction: 'left', speed: 100, color: REACT_INDIA_YELLOW, text: 'BIGGER'},
 	{
 		direction: 'right',
 		background: REACT_INDIA_YELLOW,
 		speed: 100,
-		text: 'IS BACK',
+		text: 'HYBRID',
 	},
-	{direction: 'left', speed: 100, color: REACT_INDIA_YELLOW, text: 'IS BACK'},
+	{direction: 'left', speed: 100, color: REACT_INDIA_YELLOW, text: 'BETTER'},
 ];
 
 const TickerTape: React.FC = () => {
