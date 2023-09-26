@@ -4,18 +4,22 @@ import {CenteredText} from './CenteredText';
 
 export const Numbers = () => {
 	return (
-		<AbsoluteFill>
-			<LottieLoader name="background.json" />
-			<Sequence durationInFrames={45}>
+		<AbsoluteFill
+			style={{
+				background: 'rgb(29,29,29)',
+			}}
+		>
+			<LottieLoader loop name="background.json" speed={0.5} />
+			<Sequence durationInFrames={20}>
 				<CenteredText title="3 DAYS" subtitle="Of React" />
 			</Sequence>
-			<Sequence from={45} durationInFrames={45}>
+			<Sequence from={39} durationInFrames={20}>
 				<CenteredText title="600+" subtitle="In Person Attendees" />
 			</Sequence>
-			<Sequence from={90} durationInFrames={45}>
+			<Sequence from={79} durationInFrames={20}>
 				<CenteredText title="3K+" subtitle="React Devs for Remote Day" />
 			</Sequence>
-			<Sequence from={135} durationInFrames={45}>
+			<Sequence from={119} durationInFrames={20}>
 				<CenteredText title="35+" subtitle="Front-end Speakers" />
 			</Sequence>
 		</AbsoluteFill>

@@ -32,7 +32,7 @@ export const Title: React.FC<{
 	return (
 		<h1 style={title}>
 			{words.map((t, i) => {
-				const delay = i * 5;
+				const delay = i * 10;
 
 				const scale = spring({
 					fps: videoConfig.fps,

@@ -20,7 +20,7 @@ export const Transition: React.FC<{
 		},
 		fps: videoConfig.fps,
 		frame,
-		durationInFrames: 20,
+		durationInFrames: 10,
 	});
 
 	const percent = interpolate(progress, [0, 1], [100, 0]);

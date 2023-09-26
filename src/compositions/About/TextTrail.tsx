@@ -16,7 +16,7 @@ export const TextTrail = () => {
 					<PopText textColor={REACT_INDIA_YELLOW} text="In" />
 				</Sequence>
 			</Trail>
-			<Sequence from={30} durationInFrames={100}>
+			<Sequence from={29} durationInFrames={100}>
 				<TextBackground text="INDIA" />
 			</Sequence>
 		</AbsoluteFill>

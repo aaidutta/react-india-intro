@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {AbsoluteFill} from 'remotion';
 import {loadFont} from '@remotion/google-fonts/Montserrat';
 import {useAppearWithScaleAndBounce} from '../../hooks/useAppearWithScaleAndBounce';
+import {REACT_INDIA_YELLOW} from '../../constants';
 
 export const CenteredText: FC<{title: string; subtitle: string}> = ({
 	title,
@@ -21,6 +22,7 @@ export const CenteredText: FC<{title: string; subtitle: string}> = ({
 			<div
 				style={{
 					textAlign: 'center',
+					color: REACT_INDIA_YELLOW,
 				}}
 			>
 				<h1

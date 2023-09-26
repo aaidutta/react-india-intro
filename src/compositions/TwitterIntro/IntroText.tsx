@@ -31,7 +31,7 @@ export const IntroText: React.FC<{
 	return (
 		<AbsoluteFill style={title}>
 			{words.map((t, i) => {
-				const delay = i * 5;
+				const delay = i * 2.5;
 
 				const scale = spring({
 					fps: videoConfig.fps,

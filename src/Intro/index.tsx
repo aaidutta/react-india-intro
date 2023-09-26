@@ -1,42 +1,85 @@
-import {Sequence} from 'remotion';
+import {
+	Audio,
+	Sequence,
+	interpolate,
+	staticFile,
+	useVideoConfig,
+} from 'remotion';
 import {HelloWorld} from '../compositions/HelloWorld';
 import {Transition} from '../layers/Transition';
-import {About} from '../compositions/About';
-import {REACT_INDIA_YELLOW} from '../constants';
+
+import {
+	REACT_INDIA_BLUE,
+	REACT_INDIA_GREEN,
+	REACT_INDIA_ORANGE,
+	REACT_INDIA_YELLOW,
+} from '../constants';
 import {Numbers} from '../compositions/Numbers';
 import {LottieTransition} from '../layers/LottieTransition';
 import {TwitterIntro} from '../compositions/TwitterIntro';
 import {DisplayTweets} from '../compositions/DisplayTweets';
+import {NoisePunch} from '../compositions/About/NoisePunch';
+import {RippleTransition} from '../layers/RippleTransition';
+import {TextTrail} from '../compositions/About/TextTrail';
+import TickerTape from '../compositions/About/TickerTape';
 
 const Intro = () => {
+	const {durationInFrames} = useVideoConfig();
 	return (
 		<>
-			<Sequence durationInFrames={120}>
+			<Sequence durationInFrames={130}>
 				<HelloWorld
 					titleColor={REACT_INDIA_YELLOW}
 					titleText="Welcome to React India"
 				/>
 			</Sequence>
-			{/* Slide in Transition from frame 110 */}
-			<Sequence from={100} durationInFrames={335}>
+
+			<Sequence from={114} durationInFrames={85}>
 				<Transition>
-					<About />
+					<NoisePunch />
 				</Transition>
 			</Sequence>
-			<Sequence from={435} durationInFrames={180}>
+			<Sequence from={194} durationInFrames={40}>
+				<RippleTransition color={REACT_INDIA_BLUE} />
+				<RippleTransition color={REACT_INDIA_ORANGE} delay={5} />
+				<RippleTransition color={REACT_INDIA_GREEN} delay={10} />
+			</Sequence>
+			<Sequence from={234} durationInFrames={130}>
+				<TextTrail />
+			</Sequence>
+			<Sequence from={364} durationInFrames={35}>
+				<TickerTape />
+			</Sequence>
+
+			<Sequence from={399} durationInFrames={160}>
 				<Numbers />
 			</Sequence>
-			<Sequence from={615} durationInFrames={335}>
+			<Sequence from={559} durationInFrames={160}>
 				<TwitterIntro />
 			</Sequence>
-			<Sequence from={600} durationInFrames={65}>
+			{/* overlapped transition */}
+			<Sequence from={529} durationInFrames={65}>
 				<LottieTransition />
 			</Sequence>
-			<Sequence from={930} durationInFrames={400}>
+
+			<Sequence from={709} durationInFrames={320}>
 				<Transition type="up">
 					<DisplayTweets />
 				</Transition>
 			</Sequence>
+			<Audio
+				src={staticFile('audio.wav')}
+				volume={(f) =>
+					interpolate(
+						f,
+						[durationInFrames - 30, durationInFrames - 10],
+						[1, 0],
+						{
+							extrapolateLeft: 'clamp',
+						}
+					)
+				}
+			/>
 		</>
 	);
 };

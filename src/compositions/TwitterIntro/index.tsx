@@ -9,19 +9,7 @@ export const TwitterIntro = () => {
 				background: REACT_INDIA_SKY,
 			}}
 		>
-			<Sequence from={45} durationInFrames={45}>
-				<IntroText titleText="The React Party Has Started" titleColor="white" />
-			</Sequence>
-			<Sequence from={100} durationInFrames={25}>
-				<IntroText titleText="&" titleColor="white" />
-			</Sequence>
-			<Sequence from={135} durationInFrames={45}>
-				<IntroText titleText="𝕏 Is Buzzing" titleColor="white" />
-			</Sequence>
-			<Sequence from={190} durationInFrames={45}>
-				<IntroText titleText="With Your Responses" titleColor="white" />
-			</Sequence>
-			<Sequence from={235} durationInFrames={100}>
+			<Sequence from={99} durationInFrames={100}>
 				<AbsoluteFill
 					style={{
 						justifyContent: 'center',
@@ -30,6 +18,18 @@ export const TwitterIntro = () => {
 				>
 					<LottieLoader name="twitter-like.json" />
 				</AbsoluteFill>
+			</Sequence>
+			<Sequence durationInFrames={30}>
+				<IntroText titleText="The React Party Has Started" titleColor="white" />
+			</Sequence>
+			<Sequence from={39} durationInFrames={30}>
+				<IntroText titleText="&" titleColor="white" />
+			</Sequence>
+			<Sequence from={79} durationInFrames={30}>
+				<IntroText titleText="𝕏 Is Buzzing" titleColor="white" />
+			</Sequence>
+			<Sequence from={119} durationInFrames={30}>
+				<IntroText titleText="With Your Responses" titleColor="white" />
 			</Sequence>
 		</AbsoluteFill>
 	);
