@@ -2,7 +2,10 @@ import {Lottie, LottieAnimationData} from '@remotion/lottie';
 import {FC, useEffect, useState} from 'react';
 import {cancelRender, continueRender, delayRender, staticFile} from 'remotion';
 
-export const LottieLoader: FC<{name: string}> = ({name}) => {
+export const LottieLoader: FC<{name: string; loop?: boolean}> = ({
+	name,
+	loop = false,
+}) => {
 	const [handle] = useState(() => delayRender('Loading Lottie animation'));
 	const [animationData, setAnimationData] =
 		useState<LottieAnimationData | null>(null);
@@ -21,5 +24,5 @@ export const LottieLoader: FC<{name: string}> = ({name}) => {
 	if (!animationData) {
 		return null;
 	}
-	return <Lottie animationData={animationData} />;
+	return <Lottie animationData={animationData} loop={loop} />;
 };

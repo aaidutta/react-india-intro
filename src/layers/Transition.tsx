@@ -9,7 +9,8 @@ import {
 
 export const Transition: React.FC<{
 	children: React.ReactNode;
-}> = ({children}) => {
+	type?: 'in' | 'up';
+}> = ({children, type = 'in'}) => {
 	const frame = useCurrentFrame();
 	const videoConfig = useVideoConfig();
 
@@ -27,7 +28,7 @@ export const Transition: React.FC<{
 	return (
 		<AbsoluteFill
 			style={{
-				transform: `translateX(${percent}%)`,
+				transform: `translate${type === 'in' ? 'X' : 'Y'}(${percent}%)`,
 			}}
 		>
 			{children}

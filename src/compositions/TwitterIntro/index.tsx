@@ -2,7 +2,7 @@ import {AbsoluteFill, Sequence} from 'remotion';
 import {REACT_INDIA_SKY} from '../../constants';
 import {IntroText} from './IntroText';
 import {LottieLoader} from '../../layers/LottieLoader';
-export const Twitter = () => {
+export const TwitterIntro = () => {
 	return (
 		<AbsoluteFill
 			style={{

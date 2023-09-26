@@ -5,7 +5,8 @@ import {About} from '../compositions/About';
 import {REACT_INDIA_YELLOW} from '../constants';
 import {Numbers} from '../compositions/Numbers';
 import {LottieTransition} from '../layers/LottieTransition';
-import {Twitter} from '../compositions/Twitter';
+import {TwitterIntro} from '../compositions/TwitterIntro';
+import {DisplayTweets} from '../compositions/DisplayTweets';
 
 const Intro = () => {
 	return (
@@ -26,10 +27,15 @@ const Intro = () => {
 				<Numbers />
 			</Sequence>
 			<Sequence from={615} durationInFrames={335}>
-				<Twitter />
+				<TwitterIntro />
 			</Sequence>
-			<Sequence from={600}>
+			<Sequence from={600} durationInFrames={65}>
 				<LottieTransition />
+			</Sequence>
+			<Sequence from={930} durationInFrames={400}>
+				<Transition type="up">
+					<DisplayTweets />
+				</Transition>
 			</Sequence>
 		</>
 	);
