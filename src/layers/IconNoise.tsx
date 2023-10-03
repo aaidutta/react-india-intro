@@ -4,8 +4,8 @@ import {FC} from 'react';
 import {noise2D} from '@remotion/noise';
 
 const OVERSCAN_MARGIN = 100;
-const ROWS = 10;
-const COLS = 10;
+const ROWS = 5;
+const COLS = 5;
 
 const IconNoise: FC<{icons: string[]; speed: number}> = ({icons, speed}) => {
 	const frame = useCurrentFrame();
@@ -23,16 +23,19 @@ const IconNoise: FC<{icons: string[]; speed: number}> = ({icons, speed}) => {
 		<AbsoluteFill>
 			{new Array(COLS).fill(0).map((_, i) =>
 				new Array(ROWS).fill(0).map((__, j) => {
-					const x = i * ((width + OVERSCAN_MARGIN) / COLS) + 30;
-					const y = j * ((height + OVERSCAN_MARGIN) / ROWS) + 30;
+					const x = i * ((width + OVERSCAN_MARGIN) / COLS) + 100;
+					const y = j * ((height + OVERSCAN_MARGIN) / ROWS);
 
-					const originalNoise = noise2D(i, j, frame * speed);
+					const originalNoise = noise2D(x, y, frame * speed);
 					const transformedNoise = transformNoiseToInteger(originalNoise);
 					return (
 						<AbsoluteFill
 							style={{
 								top: `${y}px`,
 								left: `${x}px`,
+								width: 'max-content',
+								height: 'max-content',
+								transform: `scale(${Math.abs(originalNoise)})`,
 							}}
 						>
 							<Icon src={icons[transformedNoise]} />

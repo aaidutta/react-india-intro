@@ -20,7 +20,7 @@ const TickerTape: React.FC = () => {
 	const frame = useCurrentFrame();
 	const {width, height, durationInFrames} = useVideoConfig();
 	const {fontFamily} = loadFont();
-	const {opacity} = useFadeOut(15, 5);
+	const {opacity} = useFadeOut(5, 0);
 
 	return (
 		<AbsoluteFill

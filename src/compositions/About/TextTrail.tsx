@@ -9,6 +9,7 @@ export const TextTrail = () => {
 		<AbsoluteFill
 			style={{
 				background: REACT_INDIA_GREEN,
+				justifyContent: 'center',
 			}}
 		>
 			<Trail layers={50} lagInFrames={0.1} trailOpacity={0.5}>

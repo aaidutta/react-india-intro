@@ -12,11 +12,21 @@ import {TweetLoader} from '../../layers/TweetLoader';
 import {REACT_INDIA_ORANGE, REACT_INDIA_YELLOW} from '../../constants';
 import {loadFont} from '@remotion/google-fonts/Syne';
 import {useCallback, useEffect, useState} from 'react';
+import IconNoise from '../../layers/IconNoise';
+
+const icons = [
+	'ball.png',
+	'beach.png',
+	'coconut.png',
+	'flip-flop.png',
+	'float.png',
+	'umbrella.png',
+];
 
 export const DisplayTweets = () => {
 	const {fontFamily} = loadFont();
 	const frame = useCurrentFrame();
-	const {height} = useVideoConfig();
+	const {height, width} = useVideoConfig();
 	const [handle] = useState(() => delayRender('Loading tweet data'));
 	const [tweetIds, setTweetIds] = useState<string[]>([]);
 
@@ -49,13 +59,13 @@ export const DisplayTweets = () => {
 				background: REACT_INDIA_YELLOW,
 			}}
 		>
+			<IconNoise icons={icons} speed={0.005} />
 			<Sequence>
 				<div
 					style={{
 						display: 'flex',
 						width: '100%',
 						height: '100%',
-						background: REACT_INDIA_YELLOW,
 						justifyContent: 'center',
 						alignItems: 'center',
 						overflow: 'hidden',
@@ -64,7 +74,7 @@ export const DisplayTweets = () => {
 					<div
 						style={{
 							columnCount: 3,
-							maxWidth: `${height}px`,
+							maxWidth: `1200px`,
 							transform: `translateY(${transform}px)`,
 						}}
 					>

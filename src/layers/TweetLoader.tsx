@@ -9,9 +9,11 @@ import {
 
 export const TweetLoader: FC<{id: string}> = ({id}) => {
 	const [handle] = useState(() => delayRender('Loading Twitter Cards'));
+	const frame = useCurrentFrame();
+	const opacity = interpolate(frame, [0, 10], [0, 1]);
 
 	return (
-		<div>
+		<div style={{opacity}}>
 			<TweetEmbed
 				tweetId={id}
 				options={{

@@ -2,20 +2,17 @@ import {AbsoluteFill, Sequence} from 'remotion';
 import IconNoise from '../../layers/IconNoise';
 import {PopText} from './PopText';
 import {REACT_INDIA_BLUE, REACT_INDIA_ORANGE} from '../../constants';
+import {LottieLoader} from '../../layers/LottieLoader';
 
 export const NoisePunch = () => {
-	const icons = [
-		'ball.png',
-		'beach.png',
-		'coconut.png',
-		'flip-flop.png',
-		'float.png',
-		'umbrella.png',
-	];
 	return (
 		<AbsoluteFill style={{background: REACT_INDIA_ORANGE}}>
-			<AbsoluteFill>
-				<IconNoise icons={icons} speed={0.005} />
+			<AbsoluteFill
+				style={{
+					justifyContent: 'center',
+				}}
+			>
+				<LottieLoader loop name="pattern.json" speed={0.9} />
 				<Sequence from={4} durationInFrames={20}>
 					<PopText text="The" textColor={REACT_INDIA_BLUE} />
 				</Sequence>
