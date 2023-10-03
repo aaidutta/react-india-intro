@@ -1,44 +1,96 @@
-import {AbsoluteFill, Sequence} from 'remotion';
+import {
+	AbsoluteFill,
+	Sequence,
+	cancelRender,
+	continueRender,
+	delayRender,
+	interpolate,
+	useCurrentFrame,
+	useVideoConfig,
+} from 'remotion';
 import {TweetLoader} from '../../layers/TweetLoader';
-import {LottieLoader} from '../../layers/LottieLoader';
-import {REACT_INDIA_BLUE, REACT_INDIA_YELLOW} from '../../constants';
+import {REACT_INDIA_ORANGE, REACT_INDIA_YELLOW} from '../../constants';
 import {loadFont} from '@remotion/google-fonts/Syne';
-export const DisplayTweets = () => {
-	const x = [
-		'1701264175807262972',
-		'1701601629823484383',
-		'1700213609798758825',
-		'1699758076390474201',
-		'1702525145620050238',
-	];
+import {useCallback, useEffect, useState} from 'react';
 
+export const DisplayTweets = () => {
 	const {fontFamily} = loadFont();
+	const frame = useCurrentFrame();
+	const {height} = useVideoConfig();
+	const [handle] = useState(() => delayRender('Loading tweet data'));
+	const [tweetIds, setTweetIds] = useState<string[]>([]);
+
+	const fetchData = useCallback(async () => {
+		try {
+			const response = await fetch('http://localhost:8000');
+			const json = await response.json();
+			const {data} = json;
+			const sortData = data.sort((a: any, b: any) => a.id < b.id);
+			const filteredData = sortData.map((item: any) => item.id);
+			setTweetIds(filteredData);
+
+			continueRender(handle);
+		} catch (err) {
+			cancelRender(err);
+		}
+	}, [handle]);
+
+	useEffect(() => {
+		fetchData();
+	}, [fetchData]);
+
+	const transform = interpolate(frame, [0, 500], [height, -height], {
+		extrapolateLeft: 'clamp',
+	});
 
 	return (
 		<AbsoluteFill
 			style={{
-				background: REACT_INDIA_BLUE,
+				background: REACT_INDIA_YELLOW,
 			}}
 		>
-			{x.map((num, index) => {
-				return (
-					<Sequence from={index * 60} durationInFrames={60}>
-						<AbsoluteFill
-							style={{
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}
-						>
-							<TweetLoader id={num} />
-						</AbsoluteFill>
-					</Sequence>
-				);
-			})}
-			<Sequence from={x.length * 60}>
+			<Sequence>
+				<div
+					style={{
+						display: 'flex',
+						width: '100%',
+						height: '100%',
+						background: REACT_INDIA_YELLOW,
+						justifyContent: 'center',
+						alignItems: 'center',
+						overflow: 'hidden',
+					}}
+				>
+					<div
+						style={{
+							columnCount: 3,
+							maxWidth: `${height}px`,
+							transform: `translateY(${transform}px)`,
+						}}
+					>
+						{tweetIds.map((num, index) => {
+							return (
+								<div
+									key={index}
+									style={{
+										width: '100%',
+										padding: 0,
+										display: 'inline-block',
+									}}
+								>
+									<TweetLoader id={num} />
+								</div>
+							);
+						})}
+					</div>
+				</div>
+			</Sequence>
+			<Sequence from={299}>
 				<AbsoluteFill
 					style={{
 						justifyContent: 'center',
 						alignItems: 'center',
+						background: REACT_INDIA_YELLOW,
 					}}
 				>
 					<h1
@@ -46,7 +98,7 @@ export const DisplayTweets = () => {
 							fontFamily,
 							fontWeight: 'bold',
 							fontSize: 150,
-							color: REACT_INDIA_YELLOW,
+							color: REACT_INDIA_ORANGE,
 						}}
 					>
 						#ReactIndia2023

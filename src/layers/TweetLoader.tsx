@@ -9,21 +9,9 @@ import {
 
 export const TweetLoader: FC<{id: string}> = ({id}) => {
 	const [handle] = useState(() => delayRender('Loading Twitter Cards'));
-	const frames = useCurrentFrame();
-	const scale = interpolate(frames, [0, 15], [0, 1], {
-		extrapolateRight: 'clamp',
-	});
-	const opacity = interpolate(frames, [45, 60], [1, 0], {
-		extrapolateLeft: 'clamp',
-	});
+
 	return (
-		<div
-			style={{
-				width: '550px',
-				transform: `scale(${scale})`,
-				opacity,
-			}}
-		>
+		<div>
 			<TweetEmbed
 				tweetId={id}
 				options={{

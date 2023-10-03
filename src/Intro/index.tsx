@@ -62,7 +62,7 @@ const Intro = () => {
 				<LottieTransition />
 			</Sequence>
 
-			<Sequence from={709} durationInFrames={320}>
+			<Sequence from={709}>
 				<Transition type="up">
 					<DisplayTweets />
 				</Transition>
