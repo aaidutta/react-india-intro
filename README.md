@@ -1,3 +1,5 @@
+Remotion video for react india intro
+Needs a backend to fetch tweets: https://github.com/aaidutta/react-india-video-backend
 # Remotion video
 
 <p align="center">
